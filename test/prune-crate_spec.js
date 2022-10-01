@@ -26,7 +26,7 @@ const fs = require("fs");
 
 describe('Pruning', function () {
     it('Does basic pruning', function () {
-        crate = new ROCrate();
+        const crate = new ROCrate();
         crate.index();
         const root = crate.getRootDataset();
         const loc1 = {"@id": "#Location1", "name": "Location 1", "@type": "geo"};
@@ -69,8 +69,8 @@ describe('Pruning', function () {
     });
 
     it('Works on a big real crate', function () {
-        const json = JSON.parse(fs.readFileSync("test_data/convictions-metadata.json"));
-        crate = new ROCrate(json);
+        const json = JSON.parse(fs.readFileSync("test_data/convictions-metadata.json", 'utf8'));
+        const crate = new ROCrate(json);
         crate.index();
         crate.addBackLinks();
 
@@ -114,7 +114,7 @@ describe('Pruning', function () {
         const Pruner3 = new Pruner(crate, config3)
         offence = crate.getItem("#offence_ILLEGALLY_SELLING_LIQUOR");
         const pruned3 = Pruner3.prune(offence, config3);
-        console.log("PRUNED", JSON.stringify(pruned3.getGraph(), null, 1));
+        //console.log("PRUNED", JSON.stringify(pruned3.getGraph(), null, 1));
         assert.strictEqual(pruned3.getItem("#person__VICFP_18551934_8_151").name, "CROKER, BELINDA")
 
 

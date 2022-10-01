@@ -26,25 +26,29 @@ const fs = require("fs");
 
 describe('Paginating', function () {
     it('Does basic page nesting', function () {
-        crate = new ROCrate();
+        const crate = new ROCrate();
         crate.index();
         crate.addItem({"@id": "1", "name": "Singleton" });
         const root = crate.getRootDataset()
-        root.hasPart = [{"@id": "1"}];
+        let hasPart = root.hasPart = [{"@id": "1"}];
         const page = new Page({"values": root.hasPart});
         console.log(page.values);
         for (let i = 2;  i < 20; i++) {
             crate.addItem({"@id": `${i}`, "name": `item ${i}` });
-            root.hasPart.push({"@id": `${i}`});
+            //root.hasPart.push({"@id": `${i}`});
+            hasPart.push({"@id": `${i}`});
         }
+        root.hasPart = hasPart;
         const page20 = new Page({"values": root.hasPart});
         console.log("values", page20.values);
         console.log("pages", page20.pages);
 
         for (let i = 20;  i < 80; i++) {
             crate.addItem({"@id": `${i}`, "name": `item ${i}` });
-            root.hasPart.push({"@id": `${i}`});
+            //root.hasPart.push({"@id": `${i}`});
+            hasPart.push({"@id": `${i}`});
         }
+        root.hasPart = hasPart;
         const page80 = new Page({"values": root.hasPart});
         console.log("values", page80.values);
         console.log("pages", page80.pages);

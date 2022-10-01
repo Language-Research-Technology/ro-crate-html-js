@@ -4,8 +4,13 @@
     "description": "Research Object Crate (RO-Crate) utilities for rendering a html representation",
     "main": "index.js",
     "scripts": {
-        "test": "./node_modules/.bin/mocha",
-        "test:watch": "./node_modules/.bin/mocha --watch"
+        "test": "mocha",
+        "test:watch": "mocha --watch",
+        "build:browserify": "browserify lib/entry.js -o dist/ro-crate-dynamic.js",
+        "build:dev": "webpack ./lib/entry.js --output-filename ro-crate-dynamic.js --mode development --no-optimization-minimize",
+        "build:prod": "webpack ./lib/entry.js --output-filename ro-crate-dynamic.min.js --mode production",
+        "build": "npm run build:dev && npm run build:prod",
+        "start": "http-server ./dist"
     },
     "bin": {
         "rochtml": "roc-html.js",
@@ -41,8 +46,11 @@
         "assert": "^2.0.0",
         "chai": "^4.2.0",
         "chai-fs": "^2.0.0",
+        "http-server": "^14.1.1",
         "lodash": "^4.17.15",
         "mocha": "^7.1.1",
-        "uuid": "^3.3.3"
+        "uuid": "^3.3.3",
+        "webpack": "^5.74.0",
+        "webpack-cli": "^4.10.0"
     }
 }
