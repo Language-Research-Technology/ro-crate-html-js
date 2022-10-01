@@ -6,9 +6,9 @@ const fs = require('fs-extra');
 const path = require('path');
 const ROCrate = require("ro-crate").ROCrate;
 const commonmark = require("commonmark");
-const _ = require("lodash");
+//const _ = require("lodash");
 const { valHooks } = require('jquery');
-const { defaultsDeep } = require('lodash');
+//const { defaultsDeep } = require('lodash');
 
 
 

@@ -5,7 +5,7 @@ const program = require('commander');
 const fs = require('fs-extra');
 const path = require('path');
 const ROCrate = require("ro-crate").ROCrate;
-const _ = require("lodash");
+//const _ = require("lodash");
 const {segmentPath, getLink} = require("./lib/rendering");
 const {renderPage} = require('./lib/display');
 const renderNew = require('./defaults/static_template.js');
@@ -75,8 +75,8 @@ async function main(file) {
     // Need to have context loaded
     await crate.resolveContext();
     
-    const Pruner = new CratePruner(_.clone(crate), _.clone(config));
-    const repoCrate = Pruner.prune(repoRoot, _.clone(config));
+    const Pruner = new CratePruner(crate, config);
+    const repoCrate = Pruner.prune(repoRoot);
 
     repoCrate.context = crate.context;
     repoCrate.index();
@@ -100,7 +100,7 @@ async function main(file) {
             console.log("Processing", item.name)
             var itemCrate
             
-            const Pruner1 = new CratePruner(_.clone(crate), _.clone(config));
+            const Pruner1 = new CratePruner(crate, config);
             itemCrate = Pruner1.prune(item);
             itemCrate.context = crate.context;
             const itemCrateRoot = itemCrate.getRootDataset();
