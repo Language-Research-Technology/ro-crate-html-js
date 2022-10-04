@@ -1,6 +1,6 @@
 {
-    "name": "ro-crate-html-js",
-    "version": "1.4.19",
+    "name": "ro-crate-html",
+    "version": "0.1.0",
     "description": "Research Object Crate (RO-Crate) utilities for rendering a html representation",
     "main": "index.js",
     "scripts": {
@@ -21,25 +21,27 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/UTS-eResearch/ro-crate-html-js.git"
+        "url": "https://github.com/Arkisto-Platform/ro-crate-html-js.git"
     },
     "keywords": [
         "RO-Crate"
     ],
     "author": "UTS eResearch Team",
+    "contributors": [
+        "Alvin Sebastian (https://orcid.org/0000-0002-9086-1722)",
+        "Moises Sacal Bonequi (https://orcid.org/0000-0002-4438-2755)",
+        "Peter Sefton (https://orcid.org/0000-0002-3545-944X)"
+    ],
     "license": "GPL-3.0-or-later",
     "dependencies": {
-        "cheerio": "^1.0.0-rc.3",
         "commander": "^4.0.1",
         "commonmark": "^0.29.1",
-        "ejs": "^2.7.1",
-        "fs-extra": "^10.1.0",
+        "ejs": "^3.1.8",
         "geojson": "^0.5.0",
         "jquery": "^3.5.1",
         "pairtree": "0.0.1",
         "path": "^0.12.7",
-        "ro-crate": "^3.0.1",
-        "xmlhttprequest": "^1.8.0"
+        "ro-crate": "^3.0.1"
     },
     "devDependencies": {
         "assert": "^2.0.0",
@@ -50,5 +52,16 @@
         "mocha": "^10.0.0",
         "webpack": "^5.74.0",
         "webpack-cli": "^4.10.0"
-    }
+    },
+    "files": [
+        "assets",
+        "defaults",
+        "dist",
+        "lib",
+        "index.js",
+        "meta-crate.js",
+        "roc-html.js",
+        "roc-schema.js",
+        "roc-site.js"
+    ]
 }

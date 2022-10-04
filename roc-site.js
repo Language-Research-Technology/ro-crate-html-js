@@ -2,7 +2,7 @@
 
 const process = require('process');
 const program = require('commander');
-const fs = require('fs-extra');
+const fs = require('fs/promises');
 const path = require('path');
 const ROCrate = require("ro-crate").ROCrate;
 //const _ = require("lodash");
@@ -20,7 +20,7 @@ const CratePruner = require('./lib/prune-crate');
 
 
 program
-  .version("0.1.0")
+  .version(require('./lib/version').version)
   .description(
     "Extracts data from a spreadsheet to make an RO crate"
   )
@@ -35,7 +35,7 @@ program.parse(process.argv);
 const outPath = program.outputPath ?  program.outputPath : crateDir;
 
 async function makeRepo(outPath) {
-    await fs.mkdirp(outPath);
+    await fs.mkdir(outPath, {recursive: true});
   }
 
 
@@ -62,13 +62,13 @@ function indexByType(crate, config) {
 
 async function main(file) {
     repo = await makeRepo(outPath);
-    const config = JSON.parse(await fs.readFile(program.config));
+    const config = JSON.parse(await fs.readFile(program.config, 'utf8'));
     if (program.cratescript) {
         config.renderScript = program.cratescript;
     }
     config.utils = new StaticUtils(); // Functions for paths etc
     // load the crate
-    const crate = new ROCrate(JSON.parse(await fs.readFile(path.join(crateDir, "ro-crate-metadata.json"))));
+    const crate = new ROCrate(JSON.parse(await fs.readFile(path.join(crateDir, "ro-crate-metadata.json"), 'utf8')));
     crate.index();
     crate.addBackLinks();
     repoRoot = crate.getRootDataset();
@@ -111,7 +111,7 @@ async function main(file) {
             itemCrate.addBackLinks();
         
             // Paths and directory setup
-            await fs.mkdirp(itemCrate._dirPath);
+            await fs.mkdir(itemCrate._dirPath, {recursive: true});
             itemCrate._htmlpath = path.join(itemCrate._dirPath, "ro-crate-preview.html");
             itemCrate._relHtmlpath = path.join(itemCrate._relPath, "ro-crate-preview.html");
             

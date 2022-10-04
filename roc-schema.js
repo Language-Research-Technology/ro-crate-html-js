@@ -2,7 +2,7 @@
 
 
 const program = require('commander');
-const fs = require('fs-extra');
+const fs = require('fs/promises');
 const path = require('path');
 const ROCrate = require("ro-crate").ROCrate;
 const commonmark = require("commonmark");
@@ -13,7 +13,7 @@ const { valHooks } = require('jquery');
 
 
 program
-  .version("0.1.0")
+  .version(require('./lib/version').version)
   .description(
     "Extracts a markdown or HTML page from an RO Crate containing Schema.org style Classes and Properties "
   )

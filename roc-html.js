@@ -25,14 +25,17 @@ const { ROCrate } = require("ro-crate");
 
 const program = require("commander");
 const defaults = require("./lib/defaults.js");
-const fs = require("fs-extra");
+const fs = require("fs");
 
 async function render(metadataPath, zip, script) {
     const potentialPath = path.join(metadataPath, defaults.roCrateMetadataID);
-    if (await fs.pathExists(potentialPath)) {
-        metadataPath = potentialPath;
+    var content;
+    try {
+      content = fs.readFileSync(potentialPath, 'utf8');
+    } catch (error) {
+      content = fs.readFileSync(metadataPath, 'utf8');
     }
-    json = JSON.parse(fs.readFileSync(metadataPath));
+    json = JSON.parse(content);
     const crate = new ROCrate(json);
     const preview = new Preview(crate);
     const f = new HtmlFile(preview);
@@ -44,7 +47,7 @@ async function render(metadataPath, zip, script) {
 }
 
 program
-    .version("0.1.0")
+    .version(require('./lib/version').version)
     .description("Generates an HTML previewfor a Res earch-Object crate")
     .arguments("<files...>")
     .action(function (files) {
