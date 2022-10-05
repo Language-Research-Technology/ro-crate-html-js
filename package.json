@@ -1,6 +1,6 @@
 {
     "name": "ro-crate-html",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Research Object Crate (RO-Crate) utilities for rendering a html representation",
     "main": "index.js",
     "scripts": {
@@ -41,7 +41,7 @@
         "jquery": "^3.5.1",
         "pairtree": "0.0.1",
         "path": "^0.12.7",
-        "ro-crate": "^3.0.1"
+        "ro-crate": "^3.1.0"
     },
     "devDependencies": {
         "assert": "^2.0.0",

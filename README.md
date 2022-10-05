@@ -1,4 +1,4 @@
-# ro-crate : Research Object Crate HTML preview generation
+# Research Object Crate (RO-Crate) HTML preview generation
 
 This nodejs repository has code for generating HTML previews for Research Object Crates ([RO-Crate](https://researchobject.github.io/ro-crate/))
 
@@ -20,7 +20,7 @@ In most cases `rochtml` is the most appropriate tool unless the crate you are de
 To install this from npm type:
 
 ```bash
-npm install ro-crate-html-js
+npm install ro-crate-html
 ```
 
 ## Develop
@@ -30,7 +30,7 @@ To make changes to this code:
 -  Download this repository:
 
 ```
-git clone https://github.com/UTS-eResearch/ro-crate-html-js
+git clone https://github.com/Arkisto-Platform/ro-crate-html-js
 cd ro-crate-htmljs
 ```
 
