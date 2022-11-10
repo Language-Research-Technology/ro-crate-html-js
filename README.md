@@ -103,11 +103,9 @@ Will create a markdown file that serves are rudimentary documentation. Add --htm
 TODO: Add examples.
 
 
+## Contact us
 
-
-
-
-
+(Please add links to issue tracker and enable in GitHub)
 
 
 
