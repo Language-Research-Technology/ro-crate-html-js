@@ -16,8 +16,7 @@
         "rochtml": "roc-html.js",
         "metacrate": "meta-crate.js",
         "rocstatic": "roc-site.js",
-        "rocsite": "roc-site.js",
-        "rocschema": "roc-schema.js"
+        "rocsite": "roc-site.js"
     },
     "repository": {
         "type": "git",

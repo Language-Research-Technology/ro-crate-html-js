@@ -56,7 +56,7 @@ program
 
 program.parse(process.argv);
 const cratescript = program.cratescript || defaults.render_script;
-
+console.log("SCRIPT", cratescript)
 if (!program.rawArgs.length || !paths) program.help();
 
 for (let p of paths) {
