@@ -70,16 +70,10 @@ To compile the rendering script for an RO-Crate HTML file (ro-crate-preview.html
 
 ```browserify lib/entry.js -o dist/ro-crate-dynamic.js```
 
-### Make crates that contain other crates w/ an HTML page
-
-To make a crate that 'wraps' a series of crates that are in sub directories into a container crate:
-
-```
-metacrate  -d directory_with_crates_in -n "Sample RO-Crates" -t "This RO-Crate links to other crates"
-```
+Once this is published in NPM -- set scriptVersion in the defaults to match.
 
 
-### Create a multi-page site
+### DEPRECATED: Create a multi-page site
 
 To create a RO-Crate multi-page HTML website for a crate, use `rocsite` - this requires some fairly complicated configuration which is not yet documented, but you can look at an example in the Heurist2ro-crate project: https://github.com/UTS-eResearch/heurist2ro-crate 
 
@@ -89,18 +83,8 @@ To compile the rendering script for the entry point to a multi-page HTML site RO
 
 See the `MAKEFILE`  for a commands that reference an configuration file.
 
-TODO: Explain this properly.
+This will probably be removed in a future release.
 
-
-### Generate an HTML or Markdown vocab file from a a crate
-
-For crates that have Class or Property definitions you can generate an HTML fragment that can be published on the web.
-
-```rocschema <path-to-crate>```
-
-Will create a markdown file that serves are rudimentary documentation. Add --html for HTML.
-
-TODO: Add examples.
 
 
 

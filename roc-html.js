@@ -9,7 +9,7 @@ the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
+but WITHOUT ANY WARRANTY; without evxen the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
@@ -47,7 +47,6 @@ async function render(metadataPath, zip, script) {
 }
 
 program
-    .version(require('./lib/version').version)
     .description("Generates an HTML previewfor a Res earch-Object crate")
     .arguments("<files...>")
     .action(function (files) {
@@ -56,7 +55,6 @@ program
 
 program.parse(process.argv);
 const cratescript = program.cratescript || defaults.render_script;
-console.log("SCRIPT", cratescript)
 if (!program.rawArgs.length || !paths) program.help();
 
 for (let p of paths) {
