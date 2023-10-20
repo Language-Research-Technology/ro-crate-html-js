@@ -2,7 +2,6 @@
 
 /*
 Creates a "Meta Crate" that contains other crates
-
 */
 
 const program = require('commander');

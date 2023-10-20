@@ -61,3 +61,6 @@ typings/
 .next
 
 dist
+.DS_Store
+.idea
+test_data/ro-crate-preview.html

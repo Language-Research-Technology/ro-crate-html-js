@@ -17,46 +17,49 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 var paths = undefined;
-const path = require("path");
+import path from "path";
 
-const Preview = require("./lib/ro-crate-preview-wrapper");
-const HtmlFile = require("./lib/ro-crate-preview-file");
-const { ROCrate } = require("ro-crate");
+import Preview from "./src/ro-crate-preview-wrapper.js";
+import HtmlFile from "./src/ro-crate-preview-file.js";
+import {ROCrate} from 'ro-crate';
 
-const program = require("commander");
-const defaults = require("./lib/defaults.js");
-const fs = require("fs");
+import program from "commander";
+import fs from "fs";
+import defaults from "./lib/defaults.js";
 
 async function render(metadataPath, zip, script) {
-    const potentialPath = path.join(metadataPath, defaults.roCrateMetadataID);
-    var content;
-    try {
-      content = fs.readFileSync(potentialPath, 'utf8');
-    } catch (error) {
-      content = fs.readFileSync(metadataPath, 'utf8');
-    }
-    json = JSON.parse(content);
-    const crate = new ROCrate(json);
-    const preview = new Preview(crate);
-    const f = new HtmlFile(preview);
-    newPath = path.join(
-        path.dirname(metadataPath),
-        defaults.roCratePreviewFileName
-    );
-    fs.writeFileSync(newPath, await f.render(zip, script));
+  const potentialPath = path.join(metadataPath, defaults.roCrateMetadataID);
+  var content;
+  try {
+    content = fs.readFileSync(potentialPath, 'utf8');
+  } catch (error) {
+    content = fs.readFileSync(metadataPath, 'utf8');
+  }
+  const json = JSON.parse(content);
+  const crate = new ROCrate(json);
+  const preview = new Preview(crate);
+  const f = new HtmlFile(preview);
+  const newPath = path.join(
+    path.dirname(metadataPath),
+    defaults.roCratePreviewFileName
+  );
+  fs.writeFileSync(newPath, await f.render(zip, script));
 }
 
 program
-    .description("Generates an HTML previewfor a Res earch-Object crate")
-    .arguments("<files...>")
-    .action(function (files) {
-        paths = files;
-    }).option("-c,  --cratescript [cratesript]", "URL of Crate-script");
+  .description("Generates an HTML preview for a Research-Object crate")
+  .arguments("<files...>")
+  .action(function (files) {
+    paths = files;
+  })
+  .option("-c,  --cratescript [cratesript]", "URL of Crate-script")
+  .option("-p, --package", "Embed the javascript in this page") //Start with javascript then CSS //do boolean
+  .option("-l --limit [number]", "Limit the number of entities in the crate to display") //Default to 1000
 
 program.parse(process.argv);
 const cratescript = program.cratescript || defaults.render_script;
 if (!program.rawArgs.length || !paths) program.help();
 
 for (let p of paths) {
-    render(p, cratescript);
+  render(p, cratescript);
 }

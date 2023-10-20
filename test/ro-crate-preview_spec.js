@@ -15,20 +15,20 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-const assert = require("assert");
-const fs = require("fs");
-const Preview = require("../lib/ro-crate-preview-wrapper");
-const HtmlFile = require("../lib/ro-crate-preview-file");
-const { ROCrate } = require("ro-crate");
-const StaticPathUtils = require("../lib/static_utils");
-
-const chai = require("chai");
-chai.use(require("chai-fs"));
+import * as assert from "assert";
+import Preview from '../lib/ro-crate-preview-wrapper.js';
+import HtmlFile from '../lib/ro-crate-preview-file.js';
+import StaticPathUtils from "../lib/static_utils.js";
+import {ROCrate} from "ro-crate";
+import fs from "fs";
+import * as chai from "chai";
+// chai.use(require("chai-fs"));
+import render from "../defaults/static_template.js"
 
 describe("single item rendering", function () {
   it("should create a simple table", async function () {
     this.timeout(5000);
-    json = JSON.parse(
+    const json = JSON.parse(
       fs.readFileSync("test_data/sample-ro-crate-metadata.json", 'utf8')
     );
     const crate = new ROCrate(json);
@@ -46,15 +46,15 @@ describe("single item rendering", function () {
 describe("Single static page", function () {
   it("should create a static page uisng the default template", async function () {
     this.timeout(5000);
-    json = JSON.parse(
+    const json = JSON.parse(
       fs.readFileSync("test_data/sample-ro-crate-metadata.json", 'utf8')
     );
     const crate = new ROCrate(json);
     crate.index();
     const preview = new Preview(crate, { utils: new StaticPathUtils() });
-    const renderPage = require('../defaults/static_template.js');
+    // const renderPage = require('../defaults/static_template.js');
 
-    const page = await renderPage("./", preview);
+    const page = render("./", preview);
     //await fs.writeFile("test.html", page);
     assert.equal(
       page.match(/<table/g).length,
@@ -69,7 +69,7 @@ describe("metadata summary", function () {
   this.timeout(5000);
 
   it("should create multipe metadata tables", async function () {
-    json = JSON.parse(
+    const json = JSON.parse(
       fs.readFileSync("test_data/sample-ro-crate-metadata.json", 'utf8')
     );
     const preview = new Preview(new ROCrate(json));
@@ -84,7 +84,7 @@ describe("metadata summary", function () {
 
 describe("actual file", function () {
   it("should create an html file", async function () {
-    json = JSON.parse(
+    const json = JSON.parse(
       fs.readFileSync("test_data/sample-ro-crate-metadata.json", 'utf8')
     );
     const preview = new Preview(new ROCrate(json));
@@ -98,7 +98,7 @@ describe("actual file", function () {
 
 describe("render a file", function () {
   it("should create a file", async function () {
-    json = JSON.parse(
+    const json = JSON.parse(
       fs.readFileSync("test_data/sample-ro-crate-metadata.json", 'utf8')
     );
     const preview = new Preview(new ROCrate(json));
@@ -110,7 +110,7 @@ describe("render a file", function () {
 
 describe("val.match bug with integer ContentSize", function () {
   it("should create a file from an ro-crate with an integer value", async function () {
-    json = JSON.parse(
+    const json = JSON.parse(
       fs.readFileSync("test_data/sample-ro-crate-metadata-integer.json", 'utf8')
     );
     const preview = new Preview(new ROCrate(json));

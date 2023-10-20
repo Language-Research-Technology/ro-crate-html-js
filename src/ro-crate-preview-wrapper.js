@@ -19,33 +19,13 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-class Config {
-  constructor() {
-    this.collectionTypes = ["Person", "Place"];
-    this.datasetProperty = {"Person": "about"};
-    this.followProperty =  {
-      "birthPlace":    {"@type": "Place"}, // Not using @type ATM
-      "geo": {"@type": "geoCoordinates"},
-      "location": {"@type": "Place"}, // Not using @type ATM
-      "object": {},
-      "about" : {}
-    }
 
-    //   "followReverseProperty":  {}
 
-    this.templates = {
-      "Person": null
-    } //TODO
 
-    this.pageSize = 60;
-  }
+// Load a wrapper for use offline
 
-  hasOwnPage(item) {
-    if (!Array.isArray(item["@type"])) {
-      item["@type"] = [ item["@type"]];
-    }
-    return  this.collectionTypes.filter(value => item["@type"].includes(value)).length > 0
-  }
-}
+global.window = {location: {href: ""}};
 
-export default Config;
+import Preview from '../lib/ro-crate-preview.js';
+
+export default Preview;

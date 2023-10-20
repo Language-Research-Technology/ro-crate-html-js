@@ -18,14 +18,11 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-// const path = require("path");
+
 import path from "path";
-// const fs = require("fs");
 import fs from "fs"
-// const ejs  = require("ejs");
 import ejs from "ejs"
-// const defaults = require("./defaults");
-import defaults from "./defaults.js";
+import defaults from "../lib/defaults.js";
 
 class HtmlFile  {
     constructor(preview) {

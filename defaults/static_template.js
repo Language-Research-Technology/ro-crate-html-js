@@ -105,4 +105,4 @@ ${preview.completeDataset(item["@id"])}
 </html>
 `}
 
-module.exports = render;
+export default render = render;

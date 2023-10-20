@@ -96,5 +96,4 @@ ${data.content}
 </body>
 </html>
 `}
-
-module.exports = render;
+export default render = render;

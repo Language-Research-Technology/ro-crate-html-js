@@ -16,12 +16,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 
-const assert = require('assert');
-const Pruner = require('../lib/prune-crate');
-const chai = require('chai');
-chai.use(require('chai-fs'));
-const ROCrate = require("ro-crate").ROCrate;
-const fs = require("fs");
+import * as assert from "assert";
+// const Pruner = require('../lib/prune-crate');
+import CratePruner from "../lib/prune-crate.js";
+import * as chai from "chai";
+//const chai = require('chai');
+//chai.use(require('chai-fs'));
+import {ROCrate} from "ro-crate";
+import fs from "fs";
 
 
 describe('Pruning', function () {
@@ -50,19 +52,19 @@ describe('Pruning', function () {
                }
             }
         }   
-        const Pruner1 = new Pruner(crate, config1);
+        const Pruner1 = new CratePruner(crate, config1);
         const pruned1 = Pruner1.prune(item1);
         assert.equal(pruned1.getItem("#Place1").name, "Place 1");
         assert.equal(pruned1.getGraph().length, 4);
         config1.types.Person.resolveAll.push([{"property": "birthPlace"}, {"property": "location"} ]);
-        const Pruner2 = new Pruner(crate, config1);
+        const Pruner2 = new CratePruner(crate, config1);
         const pruned2 = Pruner2.prune(item1);
         assert.equal(pruned2.getItem("#Location1").name, "Location 1");
         assert.equal(pruned2.getGraph().length, 5);
 
         config1.types.Person.resolveAll= [[{"property": "about", "@reverse": true}]];
 
-        const Pruner3 = new Pruner(crate, config1);
+        const Pruner3 = new CratePruner(crate, config1);
         const pruned3 = Pruner3.prune(item1);
         assert.equal(pruned3.getItem("#doc1").name, "Doc 1");
         assert.equal(pruned3.getGraph().length, 4);
@@ -89,7 +91,7 @@ describe('Pruning', function () {
                 }
             }
         const item1 = crate.getItem("#person__VICFP_18551934_6_249");
-        const Pruner1 = new Pruner(crate, config1)
+        const Pruner1 = new CratePruner(crate, config1)
         const pruned1 = Pruner1.prune(item1);
         assert.equal(pruned1.getItem("#person__VICFP_18551934_6_249").name, "ANDERSON, FANNY");
         assert.equal(pruned1.getGraph().length, 6);
@@ -111,8 +113,8 @@ describe('Pruning', function () {
             }
         
 
-        const Pruner3 = new Pruner(crate, config3)
-        offence = crate.getItem("#offence_ILLEGALLY_SELLING_LIQUOR");
+        const Pruner3 = new CratePruner(crate, config3)
+        const offence = crate.getItem("#offence_ILLEGALLY_SELLING_LIQUOR");
         const pruned3 = Pruner3.prune(offence, config3);
         //console.log("PRUNED", JSON.stringify(pruned3.getGraph(), null, 1));
         assert.strictEqual(pruned3.getItem("#person__VICFP_18551934_8_151").name, "CROKER, BELINDA")

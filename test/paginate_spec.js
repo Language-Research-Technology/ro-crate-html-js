@@ -16,53 +16,52 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 
-const assert = require('assert');
-const Page = require('../lib/paginate');
-const chai = require('chai');
-chai.use(require('chai-fs'));
-const ROCrate = require("ro-crate").ROCrate;
-const fs = require("fs");
-
+import * as assert from "assert";
+import Page from "../lib/paginate.js";
+import * as chai from "chai";
+// chai.use(require('chai-fs'));
+import {ROCrate} from "ro-crate";
+import fs from "fs"
 
 describe('Paginating', function () {
-    it('Does basic page nesting', function () {
-        const crate = new ROCrate();
-        crate.index();
-        crate.addItem({"@id": "1", "name": "Singleton" });
-        const root = crate.getRootDataset()
-        let hasPart = root.hasPart = [{"@id": "1"}];
-        const page = new Page({"values": root.hasPart});
-        console.log(page.values);
-        for (let i = 2;  i < 20; i++) {
-            crate.addItem({"@id": `${i}`, "name": `item ${i}` });
-            //root.hasPart.push({"@id": `${i}`});
-            hasPart.push({"@id": `${i}`});
-        }
-        root.hasPart = hasPart;
-        const page20 = new Page({"values": root.hasPart});
-        console.log("values", page20.values);
-        console.log("pages", page20.pages);
+  it('Does basic page nesting', function () {
+    const crate = new ROCrate();
+    crate.index();
+    crate.addItem({"@id": "1", "name": "Singleton"});
+    const root = crate.getRootDataset()
+    let hasPart = root.hasPart = [{"@id": "1"}];
+    const page = new Page({"values": root.hasPart});
+    console.log(page.values);
+    for (let i = 2; i < 20; i++) {
+      crate.addItem({"@id": `${i}`, "name": `item ${i}`});
+      //root.hasPart.push({"@id": `${i}`});
+      hasPart.push({"@id": `${i}`});
+    }
+    root.hasPart = hasPart;
+    const page20 = new Page({"values": root.hasPart});
+    console.log("values", page20.values);
+    console.log("pages", page20.pages);
 
-        for (let i = 20;  i < 80; i++) {
-            crate.addItem({"@id": `${i}`, "name": `item ${i}` });
-            //root.hasPart.push({"@id": `${i}`});
-            hasPart.push({"@id": `${i}`});
-        }
-        root.hasPart = hasPart;
-        const page80 = new Page({"values": root.hasPart});
-        console.log("values", page80.values);
-        console.log("pages", page80.pages);
+    for (let i = 20; i < 80; i++) {
+      crate.addItem({"@id": `${i}`, "name": `item ${i}`});
+      //root.hasPart.push({"@id": `${i}`});
+      hasPart.push({"@id": `${i}`});
+    }
+    root.hasPart = hasPart;
+    const page80 = new Page({"values": root.hasPart});
+    console.log("values", page80.values);
+    console.log("pages", page80.pages);
 
-    });
-    it('Can deal with real scale', function () {
-        const json = JSON.parse(fs.readFileSync("test_data/convictions-metadata.json"));
-        crate = new ROCrate(json);
-        crate.index();
-        const root = crate.getRootDataset();
-        const page = new Page({values: root.hasMember, pageSize: 30});
-        console.log("pages", page.pages);
-        console.log(page.pages[0].pages[0]);
+  });
+  it('Can deal with real scale', function () {
+    const json = JSON.parse(fs.readFileSync("test_data/convictions-metadata.json"));
+    const crate = new ROCrate(json);
+    crate.index();
+    const root = crate.getRootDataset();
+    const page = new Page({values: root.hasMember, pageSize: 30});
+    console.log("pages", page.pages);
+    console.log(page.pages[0].pages[0]);
 
-    });
+  });
 });
 
