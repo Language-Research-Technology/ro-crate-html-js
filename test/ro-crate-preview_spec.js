@@ -16,8 +16,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 import * as assert from "assert";
-import Preview from '../lib/ro-crate-preview-wrapper.js';
-import HtmlFile from '../lib/ro-crate-preview-file.js';
+import Preview from '../src/ro-crate-preview-wrapper.js';
+import HtmlFile from '../src/ro-crate-preview-file.js';
 import StaticPathUtils from "../lib/static_utils.js";
 import {ROCrate} from "ro-crate";
 import fs from "fs";
