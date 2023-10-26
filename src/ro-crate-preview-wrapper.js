@@ -26,6 +26,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 global.window = {location: {href: ""}};
 
-import Preview from '../lib/ro-crate-preview.js';
+import {Preview} from '../lib/ro-crate-preview.js';
 
 export default Preview;
