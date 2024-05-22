@@ -19,7 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 var paths = undefined;
 const path = require("path");
 
-const Preview = require("./lib/ro-crate-preview-wrapper");
+const Preview = require("./lib/ro-crate-preview");
 const HtmlFile = require("./lib/ro-crate-preview-file");
 const { ROCrate } = require("ro-crate");
 

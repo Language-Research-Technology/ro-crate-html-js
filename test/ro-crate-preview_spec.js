@@ -17,7 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 const assert = require("assert");
 const fs = require("fs");
-const Preview = require("../lib/ro-crate-preview-wrapper");
+const Preview = require("../lib/ro-crate-preview");
 const HtmlFile = require("../lib/ro-crate-preview-file");
 const { ROCrate } = require("ro-crate");
 const StaticPathUtils = require("../lib/static_utils");
