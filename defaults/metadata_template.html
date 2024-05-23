@@ -5,12 +5,12 @@
 
 
 <script type="application/ld+json"> 
-  <%- json_ld %>
+  <%- locals.json_ld %>
 </script>
 
     
 <!-- script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script -->
-<script src="<%= render_script %>"></script>
+<script src="<%= locals.render_script %>"></script>
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
@@ -31,17 +31,17 @@ table.table {
   <nav class="navbar">
 
     <ul class="nav navbar-nav" >
-        <li ><a href="#"><span class="glyphicon glyphicon-home dataset_name">&nbsp;<%- dataset_name  %></span></a></li>
+        <li ><a href="#"><span class="glyphicon glyphicon-home dataset_name">&nbsp;<%- locals.dataset_name  %></span></a></li>
     </ul>
 
   </nav>
 <div class="container">
 <div class="jumbotron">
-<h4 class="citation"><%- citation %></h3>
-<h3 class="item_name"><%- item_name %></h4>
+<h4 class="citation"><%- locals.citation %></h4>
+<h3 class="item_name"><%- locals.item_name %></h3>
 
 
-<a href="./ro-crate-metadata.json">⬇️🏷️ Download all the metadata for <span class='name'><%- dataset_name %></span> in JSON-LD format</a>
+<a href="./ro-crate-metadata.json">⬇️🏷️ Download all the metadata for <span class='name'><%- locals.dataset_name %></span> in JSON-LD format</a>
 
 
 <div id="check"></div>
@@ -52,7 +52,7 @@ table.table {
 
 
 <div id="summary">
-<%- html %>
+<%- locals.html %>
 </div>
 
 

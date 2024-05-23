@@ -33,7 +33,7 @@ describe("single item rendering", function () {
     );
     const crate = new ROCrate(json);
     const preview = new Preview(crate, { utils: new StaticPathUtils() });
-    const table = await preview.renderMetadataForItem(preview.rootId);
+    const table = preview.renderMetadataForItem(preview.rootId);
     assert.equal(
       table.match(/<\/tr>/g).length,
       16,
@@ -73,7 +73,7 @@ describe("metadata summary", function () {
       fs.readFileSync("test_data/sample-ro-crate-metadata.json", 'utf8')
     );
     const preview = new Preview(new ROCrate(json));
-    const div = await preview.summarizeDataset();
+    const div = preview.summarizeDataset();
     assert.equal(
       div.match(/table/g).length,
       32,

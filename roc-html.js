@@ -18,32 +18,31 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 var paths = undefined;
 const path = require("path");
+const fs = require("fs");
+const program = require("commander");
 
 const Preview = require("./lib/ro-crate-preview");
 const HtmlFile = require("./lib/ro-crate-preview-file");
 const { ROCrate } = require("ro-crate");
-
-const program = require("commander");
 const defaults = require("./lib/defaults.js");
-const fs = require("fs");
 
-async function render(metadataPath, zip, script) {
+async function render(metadataPath, script) {
     const potentialPath = path.join(metadataPath, defaults.roCrateMetadataID);
     var content;
     try {
-      content = fs.readFileSync(potentialPath, 'utf8');
+        content = fs.readFileSync(potentialPath, 'utf8');
     } catch (error) {
-      content = fs.readFileSync(metadataPath, 'utf8');
+        content = fs.readFileSync(metadataPath, 'utf8');
     }
     json = JSON.parse(content);
-    const crate = new ROCrate(json);
+    const crate = new ROCrate(json, { link: true, array: true });
     const preview = new Preview(crate);
     const f = new HtmlFile(preview);
     newPath = path.join(
         path.dirname(metadataPath),
         defaults.roCratePreviewFileName
     );
-    fs.writeFileSync(newPath, await f.render(zip, script));
+    fs.writeFileSync(newPath, await f.render(script));
 }
 
 program
