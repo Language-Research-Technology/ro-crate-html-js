@@ -145,5 +145,5 @@
       ]
     }
   ],
-  "@context": "https://raw.githubusercontent.com/ResearchObject/ro-crate/master/docs/0.3-DRAFT/context.json"
+  "@context": "https://w3id.org/ro/crate/1.1/context"
 }
