@@ -1,7 +1,15 @@
 {
     "name": "ro-crate-html",
-    "version": "0.1.4",
+    "version": "0.1.5",
     "description": "Research Object Crate (RO-Crate) utilities for rendering a html representation",
+    "exports": {
+        ".": {
+            "node": "./index-node.js",
+            "import": "./index.js",
+            "require": "./index.js"
+        },
+        "./*": "./*"
+    },
     "main": "index.js",
     "scripts": {
         "test": "mocha",
