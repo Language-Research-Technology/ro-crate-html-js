@@ -1,6 +1,6 @@
 {
     "name": "ro-crate-html",
-    "version": "0.1.5",
+    "version": "0.1.6",
     "description": "Research Object Crate (RO-Crate) utilities for rendering a html representation",
     "exports": {
         ".": {
@@ -64,6 +64,7 @@
         "dist",
         "lib",
         "index.js",
+        "index-node.js",
         "meta-crate.js",
         "roc-html.js",
         "roc-schema.js",
