@@ -91,7 +91,7 @@ describe("actual file", function () {
     const f = new HtmlFile(preview);
     const html = await f.render();
     // Worst test ever
-    assert.equal(html.search(/^\s+<html>/), 0);
+    assert.equal(html.search(/^\s+<!DOCTYPE html>/), 0);
   });
 });
 

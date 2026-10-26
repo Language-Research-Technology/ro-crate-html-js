@@ -7,6 +7,7 @@ function render(di, config, libPath, places) {
   
   
   return `
+  <!DOCTYPE html>
   <html>
   <head>
   <meta charset="utf-8">
